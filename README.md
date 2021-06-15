@@ -30,3 +30,5 @@ npm run start
 
 The application should be opened on machine default browser. 
 
+### Techinologies
+* ReactJs - Front-en lib
