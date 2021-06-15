@@ -1,0 +1,16 @@
+{
+  "name": "poke-app",
+  "version": "1.0.0",
+  "description": "poke-app SPA application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "poke",
+    "api",
+    "spa"
+  ],
+  "author": "rafael rabelo",
+  "license": "ISC"
+}
