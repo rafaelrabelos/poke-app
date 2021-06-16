@@ -36,7 +36,14 @@ const buildPokemons = async (pokemons) => {
             <img src={`${pokemonImg}`} className="card-img-top" alt={name} />
             <div className="card-body">
               <h5 className="card-title">{name}</h5>
-              <p className="card-text"><a className="btn btn-sm btn-primary" href={`datails?pokemonid=${id}`}>Details</a></p>
+              <p className="card-text">
+                <a
+                  className="col btn btn-sm btn-primary"
+                  href={`datails?pokemonid=${id}`}
+                >
+                  Details
+                </a>
+              </p>
             </div>
           </div>
         </div>
@@ -48,15 +55,41 @@ const buildPokemons = async (pokemons) => {
   return <div></div>;
 };
 
-const buildPagination = async (count = 1, limit = 1, _updateFn = () => {}) => {
+const getCurrentPage = (offset, limit) => {
+  let currentPage = 1;
+
+  if (!offset || !limit || offset < limit) return currentPage;
+
+  currentPage = (parseFloat(offset) + parseFloat(limit)) / parseFloat(limit);
+
+  return currentPage < 1 ? 1 : currentPage;
+};
+
+const buildPagination = async (
+  count = 1,
+  limit = 1,
+  currentPage,
+  _updateFn = () => {}
+) => {
   const totalPages = Math.round(count / limit);
   let offset = 0;
 
+  console.log(currentPage);
+
   return [...Array(totalPages).keys()].map((pageNum, idx) => {
+    const activePage = currentPage === parseFloat(pageNum) + 1;
     const page = (
-      <div key={`${idx}-page`} className="col col-md-1">
-        <a href={`?offset=${offset}&limit=${limit}`}>{pageNum + 1}</a>
-      </div>
+      <li
+        key={`${idx}-page-item `}
+        class={`page-item ${activePage ? " active" : ""}`}
+      >
+        <a
+          className="page-link active"
+          href={`?offset=${offset}&limit=${limit}`}
+        >
+          {parseFloat(pageNum) + 1}
+        </a>
+      </li>
     );
     offset = offset + limit;
     return page;
@@ -68,6 +101,8 @@ const App = (props) => {
   const [pokemons, setPokemons] = useState(null);
   const [pokemonsList, setPokemonsList] = useState(null);
   const [pagesList, setPagesList] = useState(null);
+  const [nextPage, setNextPage] = useState(null);
+  const [prevPage, setPreviousPage] = useState(null);
 
   useEffect(() => {
     document.title = `Pokemons page`;
@@ -80,11 +115,16 @@ const App = (props) => {
       });
     } else {
       const count = pokemons.count;
+      const currentPage = getCurrentPage(params.offset, params.limit);
+
+      setNextPage(pokemons?.next?.split("?")[1]);
+      setPreviousPage(pokemons?.previous?.split("?")[1]);
+
       buildPokemons(pokemons).then((res) => {
         setPokemonsList(res);
       });
 
-      buildPagination(count, 20, setPokemons).then((res) => {
+      buildPagination(count, 20, currentPage, setPokemons).then((res) => {
         setPagesList(res);
       });
     }
@@ -94,7 +134,23 @@ const App = (props) => {
     <div className="row">
       <div className="row">{pokemonsList}</div>
       <hr />
-      <div className="row">{pagesList}</div>
+      <div className="row">
+        <nav aria-label="col Page navigation example">
+          <ul class="pagination flex-wrap">
+            <li class="page-item">
+              <a className="page-link" href={`?${prevPage}`}>
+                Previous
+              </a>
+            </li>
+            {pagesList}
+            <li class="page-item">
+              <a className="page-link" href={`?${nextPage}`}>
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 };

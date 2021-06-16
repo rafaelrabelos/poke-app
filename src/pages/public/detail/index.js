@@ -60,14 +60,22 @@ const buildPokemonInfo = async (pokemon) => {
     return (
       <div key={`${name}-${id}-poke`} className="row">
         <div className="col col-md-6">
-          <img src={`${pokemonImg}`} className="card-img-top" alt={name} />
-          <div class="card-body">
-            <span className="btn btn-sm btn-warning"><FaStar /> Favorite</span>
+          <div className="col col-md-10">
+            <img src={`${pokemonImg}`} className="card-img-top" alt={name} />
+          </div>
+          <div className="col col-md-4">
+            <span className="col btn btn-sm btn-warning">
+              <FaStar /> Favorite <b>{name}</b>
+            </span>
           </div>
         </div>
         <div className="col col-md-6 card-pokemon">
           <ul className="list-group list-group-flush">
-            <li className="list-group-item"></li>
+            <li className="list-group-item">
+              <h4>
+                <b>{name}</b>
+              </h4>
+            </li>
             <li className="list-group-item">
               <div className="row">
                 <b>Weight:</b> {weight}
@@ -101,7 +109,9 @@ const buildPokemonInfo = async (pokemon) => {
             <li className="list-group-item">
               <div className="row">
                 <div className="col col-md-12">
-                <a href="/" class="col btn btn-info"> <FaLongArrowAltLeft /> Back</a>
+                  <a href="/" class="col btn btn-info">
+                    <FaLongArrowAltLeft /> Back
+                  </a>
                 </div>
               </div>
             </li>
