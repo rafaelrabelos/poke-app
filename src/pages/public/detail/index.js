@@ -55,14 +55,14 @@ export default class Details extends React.Component {
     let favoriteList = localStorage.getItem("favlist");
 
     if (favoriteList === null) {
-      localStorage.setItem("favlist", `${pokemonId}`);
+      localStorage.setItem("favlist", `${pokemonId}${separator}`);
       return;
     }
 
     favoriteList = favoriteList.split(separator);
 
     if (favoriteList.some((some) => some === `${pokemonId}`)) {
-      const idx = favoriteList.indexOf(pokemonId);
+      const idx = favoriteList.indexOf(`${pokemonId}`);
 
       favoriteList.splice(idx, 1);
       localStorage.setItem("favlist", favoriteList.join(separator));
@@ -106,11 +106,16 @@ export default class Details extends React.Component {
             </div>
             <div className="col col-md-5">
               <span
-                className="col btn btn-sm btn-outline-secondary"
-                onClick={() => this.handleFavoriteClick(id)}
+                className={`col btn btn-sm btn-outline-${
+                  isfavorite ? "success" : "secondary"
+                }`}
+                onClick={() => {
+                  this.handleFavoriteClick(id);
+                  this.setState({ isfavorite: this.isFavorite(id) });
+                }}
               >
-                <FaStar color={`${isfavorite ? "yellow" : "gray"}`} size="20" />{" "}
-                Favorite <b>{name}</b>
+                <FaStar color={`${isfavorite ? "green" : "gray"}`} size="20" />{" "}
+                {`${isfavorite ? "Unfavorite" : "Favorite"}`} <b>{name}</b>
               </span>
             </div>
           </div>
@@ -175,6 +180,7 @@ export default class Details extends React.Component {
     this.getPokemon(pokemonid).then((res) => {
       this.setState({
         pokemon: res,
+        isfavorite: this.isFavorite(pokemonid),
         pageTitle: `Detail page - ${res?.name || ""}`,
       });
     });
