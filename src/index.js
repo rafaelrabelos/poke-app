@@ -1,19 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
-import './index.css';
-import Layout  from './layout/main/mainLayout';
+import "./index.css";
 
-import { App } from './pages';
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import Layout from "./layout/main/mainLayout";
 
 ReactDOM.render(
   <BrowserRouter>
