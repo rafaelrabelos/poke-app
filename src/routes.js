@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 import React from "react";
 
 // Public pages components
-import { App } from "./pages";
+import { App, Details } from "./pages";
 
 const publicRoutes = [
   {
@@ -13,9 +13,9 @@ const publicRoutes = [
   },
   {
     layout: "/app",
-    page: "/datail",
-    nome: "datail",
-    component: App,
+    page: "/datails",
+    nome: "datails",
+    component: Details,
   },
 ];
 

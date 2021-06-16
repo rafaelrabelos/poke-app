@@ -36,7 +36,7 @@ const buildPokemons = async (pokemons) => {
             <img src={`${pokemonImg}`} className="card-img-top" alt={name} />
             <div className="card-body">
               <h5 className="card-title">{name}</h5>
-              <p className="card-text"></p>
+              <p className="card-text"><a className="btn btn-sm btn-primary" href={`datails?pokemonid=${id}`}>Details</a></p>
             </div>
           </div>
         </div>
@@ -93,6 +93,7 @@ const App = (props) => {
   return (
     <div className="row">
       <div className="row">{pokemonsList}</div>
+      <hr />
       <div className="row">{pagesList}</div>
     </div>
   );
