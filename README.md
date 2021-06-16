@@ -31,4 +31,5 @@ npm run start
 The application should be opened on machine default browser. 
 
 ### Techinologies
-* ReactJs - Front-en lib
+* ReactJs - Front-end lib
+* Axios - REST API consuming
