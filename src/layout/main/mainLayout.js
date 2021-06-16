@@ -17,7 +17,7 @@ class Layout extends React.Component {
         <div className="container-fluid">
           {/* Page content */}
           {/* roteamento do layout */}
-            <div className="row main-center">
+            <div className="main-center">
               <Switch>
                 {getRoutes(routes, "/app")}
                 <Redirect from="*" to="/app/home" />
