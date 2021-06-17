@@ -1,8 +1,24 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { getCurrentPage }  from './';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('Home group testing', () => {
+
+  it('should get the current page', () => {
+    
+    // Arrange
+    const data = [
+      {offset:0 , limit: 0, expct: 1},
+      {offset:40 , limit: 20, expct: 3},
+      {offset:80 , limit: 20, expct: 5}
+    ];
+
+    // Act
+    data.forEach( item => {
+      const page = getCurrentPage(item.offset, item.limit);
+
+      // Assert
+     expect(page).toEqual(item.expct);
+    });
+    
+  });
+  
 });

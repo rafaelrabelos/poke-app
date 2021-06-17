@@ -23,6 +23,7 @@ const getPokemonsInfo = async (pokemons) => {
   return pokemons;
 };
 
+// Builds the components for this page
 const buildPokemons = async (pokemons) => {
   if (pokemons && pokemons.results) {
     const pokemonsItems = pokemons.results.map((pokemon, idx) => {
@@ -56,8 +57,7 @@ const buildPokemons = async (pokemons) => {
   return <div></div>;
 };
 
-// Builds the components for this page
-const getCurrentPage = (offset, limit) => {
+export const getCurrentPage = (offset, limit) => {
   let currentPage = 1;
 
   if (!offset || !limit || offset < limit) return currentPage;
