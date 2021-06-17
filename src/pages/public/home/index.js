@@ -56,6 +56,7 @@ const buildPokemons = async (pokemons) => {
   return <div></div>;
 };
 
+// Builds the components for this page
 const getCurrentPage = (offset, limit) => {
   let currentPage = 1;
 

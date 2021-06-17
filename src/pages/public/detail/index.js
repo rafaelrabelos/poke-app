@@ -81,6 +81,7 @@ export default class Details extends React.Component {
       .some((some) => some === `${pokemonId}`);
   };
 
+  // Builds the main component for this page
   buildPokemonInfo = (pokemon) => {
     if (pokemon) {
       const {

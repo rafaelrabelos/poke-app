@@ -7,7 +7,6 @@ export default class Favorites extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorites: [],
       pokemonList: <BuildPokemonList />,
       pageTitle: "Favorites page",
     };
@@ -25,9 +24,9 @@ export default class Favorites extends React.Component {
     return favoriteList?.split(separator);
   };
 
+  // Build the components foor this page
   buildFavorites = async () => {
     const favorites = this.getFavorites().filter((fav) => fav !== "");
-    this.setState({ favorites: favorites });
 
     let pokemonsData = [];
 
@@ -73,6 +72,7 @@ export default class Favorites extends React.Component {
   componentDidMount() {
     this.buildFavorites();
   }
+
   render() {
     const { pageTitle, pokemonList } = this.state;
 
@@ -86,7 +86,6 @@ export default class Favorites extends React.Component {
           </a>
         </div>
         <div className="row">{pokemonList}</div>
-        <hr />
       </div>
     );
   }

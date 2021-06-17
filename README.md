@@ -1,6 +1,6 @@
 # POKE APP SPA
 
-Description
+This application uses the free API serviçe from pokeapi.co to implements a front-end application. The app lists all pokemons consuming the API service and allow the user to view a more detailed page for a selected pokemon. The app has suport to favorite pokemons and show the list of selecteds ones.
 
 ### Requeriments
 
@@ -22,6 +22,8 @@ npm install
 
 ### Build & Run
 
+Before running the application, make a copy of .env.sample to .env and ensure the env variable(REACT_APP_API_URL) is filled.
+
 The following command will build and run the application.
 
 ```
@@ -33,3 +35,9 @@ The application should be opened on machine default browser.
 ### Techinologies
 * ReactJs - Front-end lib
 * Axios - REST API consuming
+* Bootstrap
+
+### Tools
+* VS Code
+* Fifefox
+* GIT and GitHub
