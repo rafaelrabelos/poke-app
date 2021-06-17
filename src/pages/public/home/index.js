@@ -75,8 +75,6 @@ const buildPagination = async (
   const totalPages = Math.round(count / limit);
   let offset = 0;
 
-  console.log(currentPage);
-
   return [...Array(totalPages).keys()].map((pageNum, idx) => {
     const activePage = currentPage === parseFloat(pageNum) + 1;
     const page = (
