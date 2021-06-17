@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 import React from "react";
 
 // Public pages components
-import { App, Details } from "./pages";
+import { App, Details, Favorites } from "./pages";
 
 const publicRoutes = [
   {
@@ -10,6 +10,12 @@ const publicRoutes = [
     page: "/home",
     nome: "home",
     component: App,
+  },
+  {
+    layout: "/app",
+    page: "/favorites",
+    nome: "favorites",
+    component: Favorites,
   },
   {
     layout: "/app",

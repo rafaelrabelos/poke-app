@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaStar } from "react-icons/fa";
 import queryString from "query-string";
 import { pokemonService } from "../../../services";
 import "./styles.css";
@@ -38,7 +39,7 @@ const buildPokemons = async (pokemons) => {
               <h5 className="card-title">{name}</h5>
               <p className="card-text">
                 <a
-                  className="col btn btn-sm btn-primary"
+                  className="col btn btn-sm btn-outline-primary"
                   href={`datails?pokemonid=${id}`}
                 >
                   Details
@@ -132,6 +133,11 @@ const App = (props) => {
 
   return (
     <div className="row">
+      <div className="row">
+        <a href="/app/favorites" class="float">
+          <FaStar color="yellow" size="19" className="my-float" />
+        </a>
+      </div>
       <div className="row">{pokemonsList}</div>
       <hr />
       <div className="row">
