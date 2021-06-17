@@ -10,7 +10,6 @@ export default class Details extends React.Component {
       pokemon: null,
       isfavorite: "",
       pageTitle: "Detail page",
-      loading: false,
     };
   }
 
