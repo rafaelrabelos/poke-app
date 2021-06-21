@@ -1,5 +1,4 @@
 import React from "react";
-import BuildPokemonList from "../../shared/buildPokemonList";
 import { FaArrowLeft } from "react-icons/fa";
 import { pokemonService } from "../../../services";
 import "./styles.css";
@@ -7,7 +6,7 @@ export default class Favorites extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemonList: <BuildPokemonList />,
+      pokemonList: null,
       pageTitle: "Favorites page",
     };
   }
