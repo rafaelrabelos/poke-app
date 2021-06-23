@@ -19,13 +19,17 @@ export default class Favorites extends React.Component {
 
   getFavorites = () => {
     const separator = ";";
-    let favoriteList = localStorage.getItem("favlist");
-    return favoriteList?.split(separator);
+    const storedFavorites = localStorage.getItem("favlist");
+    const favoriteList = storedFavorites
+      ?.split(separator)
+      .filter((fav) => fav !== "");
+
+    return favoriteList;
   };
 
   // Build the components foor this page
   buildFavorites = async () => {
-    const favorites = this.getFavorites().filter((fav) => fav !== "");
+    const favorites = this.getFavorites();
 
     let pokemonsData = [];
 

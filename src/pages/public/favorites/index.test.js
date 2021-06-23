@@ -13,8 +13,8 @@ describe('Home group testing', () => {
 
     // Act
     data.forEach( item => {
-      localStorage.setItem('favlist', item)
-      const fav = Favorites.getFavorites();
+      localStorage.setItem('favlist', item.set)
+      const fav = new Favorites().getFavorites();
 
       // Assert
      expect(fav.length).toEqual(item.expct);
