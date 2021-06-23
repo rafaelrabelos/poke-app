@@ -20,8 +20,8 @@ export default class Details extends React.Component {
   };
 
   buildPokemonTypes = (types) => {
-    return types.map((item) => (
-      <div className="col col-md-3">
+    return types.map((item, idx) => (
+      <div key={`${idx}-type`} className="col col-md-3">
         <span className="col badge-pill badge badge-secondary">
           {item.type.name}
         </span>
@@ -30,8 +30,8 @@ export default class Details extends React.Component {
   };
 
   buildPokemonAbilities = (abilities) => {
-    return abilities.map((item) => (
-      <div className="col col-md-3">
+    return abilities.map((item, idx) => (
+      <div key={`${idx}-ability`} className="col col-md-3">
         <span className="col badge-pill badge badge-secondary">
           {item.ability.name}
         </span>
@@ -40,13 +40,48 @@ export default class Details extends React.Component {
   };
 
   buildPokemonStats = (stats) => {
-    return stats.map((items) => (
-      <div className="col col-md-12">
+    return stats.map((items, idx) => (
+      <div key={`${idx}-stats`} className="col col-md-12">
         <span className="col badge badge-pill badge-secondary">
           {items.stat.name}: {items.base_stat}
         </span>
       </div>
     ));
+  };
+
+  buildPokemonDetailsList = (pokemon) => {
+    const { name, weight, height, species, types, abilities, stats } = pokemon;
+
+    const details = [
+      {
+        detail: "",
+        value: (
+          <h4>
+            <b>{name}</b>
+          </h4>
+        ),
+      },
+      { detail: "Weight:", value: weight },
+      { detail: "Height:", value: height },
+      { detail: "Species:", value: species.name },
+      { detail: "Types:", value: this.buildPokemonTypes(types) },
+      { detail: "Abilities:", value: this.buildPokemonAbilities(abilities) },
+      { detail: "stats:", value: this.buildPokemonStats(stats) },
+    ];
+
+    const detailsList = details.map((item, idx) => {
+      return (
+        <li key={`${item.detail}-${idx}-detail-li`} className="list-group-item">
+          <div key={`${item.detail}-detail-li`} className="row">
+            <b>{item.detail}</b> {item.value}
+          </div>
+        </li>
+      );
+    });
+
+    //detailsList.push()
+
+    return detailsList;
   };
 
   handleFavoriteClick = (pokemonId) => {
@@ -84,17 +119,7 @@ export default class Details extends React.Component {
   // Builds the main component for this page
   buildPokemonInfo = (pokemon) => {
     if (pokemon) {
-      const {
-        name,
-        sprites,
-        id,
-        weight,
-        height,
-        species,
-        types,
-        abilities,
-        stats,
-      } = pokemon;
+      const { name, sprites, id } = pokemon;
       const pokemonImg = sprites.other["official-artwork"].front_default;
       const { isfavorite } = this.state;
 
@@ -121,42 +146,8 @@ export default class Details extends React.Component {
           </div>
           <div className="col col-md-6 card-pokemon">
             <ul className="list-group list-group-flush">
-              <li className="list-group-item">
-                <h4>
-                  <b>{name}</b>
-                </h4>
-              </li>
-              <li className="list-group-item">
-                <div className="row">
-                  <b>Weight:</b> {weight}
-                </div>
-              </li>
-              <li className="list-group-item">
-                <div className="row">
-                  <b>Height:</b> {height}
-                </div>
-              </li>
-              <li className="list-group-item">
-                <div className="row">
-                  <b>Species:</b> {species.name}
-                </div>
-              </li>
-              <li className="list-group-item">
-                <div className="row">
-                  <b>Types:</b> {this.buildPokemonTypes(types)}
-                </div>
-              </li>
-              <li className="list-group-item">
-                <div className="row">
-                  <b>Abilities:</b> {this.buildPokemonAbilities(abilities)}
-                </div>
-              </li>
-              <li className="list-group-item">
-                <div className="row">
-                  <b>stats:</b> {this.buildPokemonStats(stats)}
-                </div>
-              </li>
-              <li className="list-group-item">
+              {this.buildPokemonDetailsList(pokemon)}
+              <li key="back-btn-detail-li" className="list-group-item">
                 <div className="row">
                   <div className="col col-md-12">
                     <a href="/" className="col btn btn-info">
