@@ -81,7 +81,7 @@ const buildPagination = async (
     const page = (
       <li
         key={`${idx}-page-item `}
-        class={`page-item ${activePage ? " active" : ""}`}
+        className={`page-item ${activePage ? " active" : ""}`}
       >
         <a
           className="page-link active"
@@ -133,7 +133,7 @@ const App = (props) => {
   return (
     <div className="row">
       <div className="row">
-        <a href="/app/favorites" class="float">
+        <a href="/app/favorites" className="float">
           <FaStar color="yellow" size="19" className="my-float" />
         </a>
       </div>
@@ -141,14 +141,14 @@ const App = (props) => {
       <hr />
       <div className="row">
         <nav aria-label="col Page navigation example">
-          <ul class="pagination flex-wrap">
-            <li class="page-item">
+          <ul className="pagination flex-wrap">
+            <li className="page-item">
               <a className="page-link" href={`?${prevPage}`}>
                 Previous
               </a>
             </li>
             {pagesList}
-            <li class="page-item">
+            <li className="page-item">
               <a className="page-link" href={`?${nextPage}`}>
                 Next
               </a>

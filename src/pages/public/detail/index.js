@@ -159,7 +159,7 @@ export default class Details extends React.Component {
               <li className="list-group-item">
                 <div className="row">
                   <div className="col col-md-12">
-                    <a href="/" class="col btn btn-info">
+                    <a href="/" className="col btn btn-info">
                       <FaLongArrowAltLeft /> Back
                     </a>
                   </div>

@@ -80,7 +80,7 @@ export default class Favorites extends React.Component {
     return (
       <div className="row">
         <div className="row">
-          <a href="/app/" class="float">
+          <a href="/app/" className="float">
             <FaArrowLeft size="19" className="my-float" />
           </a>
         </div>
