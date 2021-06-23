@@ -128,7 +128,7 @@ const App = (props) => {
         setPagesList(res);
       });
     }
-  }, [pokemons]);
+  }, [params.limit, params.offset, pokemons]);
 
   return (
     <div className="row">
