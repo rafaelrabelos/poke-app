@@ -33,6 +33,7 @@ export default class Favorites extends React.Component {
 
     let pokemonsData = [];
 
+    if(favorites && favorites.length > 0)
     for (let i = 0; i < favorites.length; i++) {
       const element = favorites[i];
       const pokemon = await this.getPokemon(element);
@@ -40,13 +41,13 @@ export default class Favorites extends React.Component {
       pokemonsData.push(pokemon);
     }
 
-    if (pokemonsData) {
+    if (pokemonsData && pokemonsData.length > 0) {
       const pokemons = pokemonsData.map((pokemon, idx) => {
         const { name, sprites, id } = pokemon;
         const pokemonImg = sprites.other["official-artwork"].front_default;
 
         return (
-          <div key={`${idx}-${id}-poke`} className="col col-md-2 card-pokemon">
+          <div key={`${idx}-${id}-poke`} className="col col-lg-4 card-pokemon">
             <div className="card">
               <img src={`${pokemonImg}`} className="card-img-top" alt={name} />
               <div className="card-body">
@@ -69,7 +70,21 @@ export default class Favorites extends React.Component {
 
       return pokemons;
     }
-    return <div></div>;
+    
+    const emptyDetail = (
+      <div className="card alert alert-warning">
+              <div className="card-body">
+                <h5 className="card-title">Oops!<br />you don't have any pokemon in your favorite list</h5>
+                <p className="card-text"> Please go back to the main page and browse the Pokémon list to select your favorites.
+                 Once you've selected a Pokémon, you can see it on this page <br/><br/>
+                 <a href="/" >Back to main page</a>
+                </p>
+              </div>
+            </div>
+    );
+
+    this.setState({ pokemonList: emptyDetail });
+    return emptyDetail;
   };
 
   componentDidMount() {
