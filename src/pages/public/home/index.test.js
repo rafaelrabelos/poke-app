@@ -8,7 +8,8 @@ describe('Home group testing', () => {
     const data = [
       {offset:0 , limit: 0, expct: 1},
       {offset:40 , limit: 20, expct: 3},
-      {offset:80 , limit: 20, expct: 5}
+      {offset:80 , limit: 20, expct: 5},
+      {offset:1000 , limit: 20, expct: 51}
     ];
 
     // Act

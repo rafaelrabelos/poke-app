@@ -59,10 +59,12 @@ const buildPokemons = async (pokemons) => {
 
 export const getCurrentPage = (offset, limit) => {
   let currentPage = 1;
+  const parsedOffset = parseFloat(offset);
+  const parsedLimit = parseFloat(limit);
 
-  if (!offset || !limit || offset < limit) return currentPage;
+  if (!offset || !limit || parsedOffset < parsedLimit) return currentPage;
 
-  currentPage = (parseFloat(offset) + parseFloat(limit)) / parseFloat(limit);
+  currentPage = (parsedOffset + parsedLimit) / parseFloat(limit);
 
   return currentPage < 1 ? 1 : currentPage;
 };
